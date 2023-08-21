@@ -44,6 +44,11 @@
             "date": 1692598084363,
             "name": "/media/mohammad/CA20957920956D67/web development/Project/univercity-manegment/university-management-core-service-starter/logs/winston/successes/phu-2023-21-08-12-success.log",
             "hash": "f60cfd023a635e72eccc6c045c023ab4af75abade41a9fcd8807e34c0e0dbba6"
+        },
+        {
+            "date": 1692631498796,
+            "name": "/media/mohammad/CA20957920956D67/web development/Project/univercity-manegment/university-management-core-service-starter/logs/winston/successes/phu-2023-21-08-21-success.log",
+            "hash": "c16633c2a99486006c34be10387cb2fff1b7c0b26ab4dd91c6ae67904e0990cf"
         }
     ],
     "hashType": "sha256"
