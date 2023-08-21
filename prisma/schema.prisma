@@ -111,4 +111,6 @@ model Room {
   updateAt   DateTime @updatedAt
   buildingId String
   building   Building @relation(fields: [buildingId], references: [id])
+
+  @@map("rooms")
 }
