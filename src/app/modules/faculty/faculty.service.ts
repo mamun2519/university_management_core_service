@@ -99,8 +99,26 @@ const getByIdFacultyFromDB = async (id: string): Promise<Faculty | null> => {
   });
 };
 
+const updateIntoDB = async (
+  id: string,
+  data: Partial<Faculty>
+): Promise<Faculty> => {
+  return await prisma.faculty.update({
+    where: {
+      id,
+    },
+    data,
+  });
+};
+
+const deleteFromDB = async (id: string): Promise<Faculty> => {
+  return await prisma.faculty.delete({ where: { id } });
+};
+
 export const FacultyService = {
   insertFacultyFromDB,
   getAllFacultyFromDB,
   getByIdFacultyFromDB,
+  updateIntoDB,
+  deleteFromDB,
 };

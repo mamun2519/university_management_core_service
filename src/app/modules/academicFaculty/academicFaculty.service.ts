@@ -72,8 +72,26 @@ const getSingleFacultyFromDB = async (
   });
 };
 
+const updateIntoDB = async (
+  id: string,
+  data: Partial<AcademicFaculty>
+): Promise<AcademicFaculty> => {
+  return await prisma.academicFaculty.update({
+    where: {
+      id,
+    },
+    data,
+  });
+};
+
+const deleteFromDB = async (id: string): Promise<AcademicFaculty> => {
+  return await prisma.academicFaculty.delete({ where: { id } });
+};
+
 export const AcademicFacultyService = {
   createFacultyFromDB,
   getAllFacultyFromDB,
   getSingleFacultyFromDB,
+  updateIntoDB,
+  deleteFromDB,
 };
