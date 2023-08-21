@@ -1,0 +1,50 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "/media/mohammad/CA20957920956D67/web development/Project/univercity-manegment/university-management-core-service-starter/logs/winston/successes/.2f19fef28b0531825f548e9bbc4e68dcfa8adf3e-audit.json",
+    "files": [
+        {
+            "date": 1692510463295,
+            "name": "/media/mohammad/CA20957920956D67/web development/Project/univercity-manegment/university-management-core-service-starter/logs/winston/successes/phu-2023-20-08-11-success.log",
+            "hash": "a5e7c11d2558416d222f79958a6575c09318e8bfe7aa7430bf59403863c817f0"
+        },
+        {
+            "date": 1692521969686,
+            "name": "/media/mohammad/CA20957920956D67/web development/Project/univercity-manegment/university-management-core-service-starter/logs/winston/successes/phu-2023-20-08-14-success.log",
+            "hash": "e4d40b46e4dfb615664c0de897b3c05a2de821b93121d0ee3837d1c43835f46e"
+        },
+        {
+            "date": 1692522797482,
+            "name": "/media/mohammad/CA20957920956D67/web development/Project/univercity-manegment/university-management-core-service-starter/logs/winston/successes/phu-2023-20-08-15-success.log",
+            "hash": "dc3fc7b2707b0f9e5b64bc0b7c1b2ca6543bc417000542bdeda7557b4463358b"
+        },
+        {
+            "date": 1692538541779,
+            "name": "/media/mohammad/CA20957920956D67/web development/Project/univercity-manegment/university-management-core-service-starter/logs/winston/successes/phu-2023-20-08-19-success.log",
+            "hash": "a34a03ce0b87fa786e53d7323037b5889eb3728387f6d747fb3567784659e73d"
+        },
+        {
+            "date": 1692540033483,
+            "name": "/media/mohammad/CA20957920956D67/web development/Project/univercity-manegment/university-management-core-service-starter/logs/winston/successes/phu-2023-20-08-20-success.log",
+            "hash": "0272c53d65cf984c604a379a13c81c341119f89c0c57f68e9ddc38cb7ea46784"
+        },
+        {
+            "date": 1692549152499,
+            "name": "/media/mohammad/CA20957920956D67/web development/Project/univercity-manegment/university-management-core-service-starter/logs/winston/successes/phu-2023-20-08-22-success.log",
+            "hash": "698aa5330a27f94dd9574cd61632691cae32fc3fa2c240d25751f67bf7af6273"
+        },
+        {
+            "date": 1692596120767,
+            "name": "/media/mohammad/CA20957920956D67/web development/Project/univercity-manegment/university-management-core-service-starter/logs/winston/successes/phu-2023-21-08-11-success.log",
+            "hash": "a648fcf4e778f373237199950d1159dfafb31805ad4e6391497e11893065d8ba"
+        },
+        {
+            "date": 1692598084363,
+            "name": "/media/mohammad/CA20957920956D67/web development/Project/univercity-manegment/university-management-core-service-starter/logs/winston/successes/phu-2023-21-08-12-success.log",
+            "hash": "f60cfd023a635e72eccc6c045c023ab4af75abade41a9fcd8807e34c0e0dbba6"
+        }
+    ],
+    "hashType": "sha256"
+}
