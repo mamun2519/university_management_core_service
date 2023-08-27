@@ -56,6 +56,9 @@ const getAllSemesterFromDB = async (
         : {
             createdAt: 'desc',
           },
+    include: {
+      students: true,
+    },
   });
   const total = await prisma.academicSemester.count();
 

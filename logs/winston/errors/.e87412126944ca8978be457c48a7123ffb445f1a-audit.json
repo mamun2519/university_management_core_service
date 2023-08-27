@@ -59,6 +59,11 @@
             "date": 1692637212130,
             "name": "/media/mohammad/CA20957920956D67/web development/Project/univercity-manegment/university-management-core-service-starter/logs/winston/errors/phu-2023-21-08-23-error.log",
             "hash": "83f02e2599f70343da8c1862caa32c5ee384e0b04e79ebfb47f87229eca52669"
+        },
+        {
+            "date": 1693068171626,
+            "name": "/media/mohammad/CA20957920956D67/web development/Project/univercity-manegment/university-management-core-service-starter/logs/winston/errors/phu-2023-26-08-22-error.log",
+            "hash": "14ad009487c1cba006cfa48617eee3161c6867c4e559f9de41822b948202f9cb"
         }
     ],
     "hashType": "sha256"
