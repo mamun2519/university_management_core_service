@@ -6,6 +6,7 @@ import { BuildingRoutes } from '../modules/building/building.route';
 import { CourseRoutes } from '../modules/course/course.route';
 import { FacultyRoute } from '../modules/faculty/faculty.route';
 import { RoomRoutes } from '../modules/room/room.route';
+import { SemesterRegistrationRoutes } from '../modules/semesterRegistration/semesterRegistration.route';
 import { StudentRoute } from '../modules/student/student.route';
 
 const router = express.Router();
@@ -43,6 +44,10 @@ const moduleRoutes = [
   {
     path: '/course',
     route: CourseRoutes,
+  },
+  {
+    path: '/semester-registration',
+    route: SemesterRegistrationRoutes,
   },
 ];
 
