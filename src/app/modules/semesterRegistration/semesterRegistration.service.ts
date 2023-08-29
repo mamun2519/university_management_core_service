@@ -15,6 +15,7 @@ import { IRegistrationFilterRequest } from './semesterRegistration.interface';
 const insertIntoDB = async (
   data: SemesterRegistration
 ): Promise<SemesterRegistration> => {
+  console.log(data);
   const isAnySemesterUpComingOrGoing =
     await prisma.semesterRegistration.findFirst({
       where: {
@@ -28,6 +29,7 @@ const insertIntoDB = async (
         ],
       },
     });
+
   if (isAnySemesterUpComingOrGoing) {
     throw new ApiError(
       httpStatus.BAD_REQUEST,
@@ -36,9 +38,9 @@ const insertIntoDB = async (
   }
   const result = await prisma.semesterRegistration.create({
     data,
-    include: {
-      academicSemester: true,
-    },
+    // include: {
+    //   academicSemester: true,
+    // },
   });
   return result;
 };
