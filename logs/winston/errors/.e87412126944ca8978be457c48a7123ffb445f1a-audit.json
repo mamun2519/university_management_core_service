@@ -6,36 +6,6 @@
     "auditLog": "/media/mohammad/CA20957920956D67/web development/Project/univercity-manegment/university-management-core-service-starter/logs/winston/errors/.e87412126944ca8978be457c48a7123ffb445f1a-audit.json",
     "files": [
         {
-            "date": 1692510463297,
-            "name": "/media/mohammad/CA20957920956D67/web development/Project/univercity-manegment/university-management-core-service-starter/logs/winston/errors/phu-2023-20-08-11-error.log",
-            "hash": "7867ad92672363515880eae1d83905b1f0021888a2ecd62523cc32f6a8ab2e77"
-        },
-        {
-            "date": 1692521969694,
-            "name": "/media/mohammad/CA20957920956D67/web development/Project/univercity-manegment/university-management-core-service-starter/logs/winston/errors/phu-2023-20-08-14-error.log",
-            "hash": "6e30ba64281851f3afc7dffd46086b402d1b0c89f8a18d23b6b050bdf3c311f0"
-        },
-        {
-            "date": 1692522797788,
-            "name": "/media/mohammad/CA20957920956D67/web development/Project/univercity-manegment/university-management-core-service-starter/logs/winston/errors/phu-2023-20-08-15-error.log",
-            "hash": "dff4fe5e0f03409dccdcce3923d099841c284a34f23a1f14804b6f34310f429f"
-        },
-        {
-            "date": 1692538541784,
-            "name": "/media/mohammad/CA20957920956D67/web development/Project/univercity-manegment/university-management-core-service-starter/logs/winston/errors/phu-2023-20-08-19-error.log",
-            "hash": "3ee75ae6609d9de5aef37aa897609709debe79baa80ca9a1cc0e86fc6acc5204"
-        },
-        {
-            "date": 1692540033733,
-            "name": "/media/mohammad/CA20957920956D67/web development/Project/univercity-manegment/university-management-core-service-starter/logs/winston/errors/phu-2023-20-08-20-error.log",
-            "hash": "cdc9bd70215717bad7aa50db1e4f2637ee39262fe4a923110b539b6eae7b7d7a"
-        },
-        {
-            "date": 1692549152507,
-            "name": "/media/mohammad/CA20957920956D67/web development/Project/univercity-manegment/university-management-core-service-starter/logs/winston/errors/phu-2023-20-08-22-error.log",
-            "hash": "a048399de931fa97eb0cf7439d353829554cd9cf3dc30af549ab8ea8520bd51f"
-        },
-        {
             "date": 1692596120775,
             "name": "/media/mohammad/CA20957920956D67/web development/Project/univercity-manegment/university-management-core-service-starter/logs/winston/errors/phu-2023-21-08-11-error.log",
             "hash": "f9ba96f9f123fd7a432196bbae2379c77bbc1cd366d099c3bbc6f2e9a00008fd"
@@ -114,6 +84,11 @@
             "date": 1693303416637,
             "name": "/media/mohammad/CA20957920956D67/web development/Project/univercity-manegment/university-management-core-service-starter/logs/winston/errors/phu-2023-29-08-16-error.log",
             "hash": "dd7c2b1809a1ba9da0000033ad751f45e04980cb04827a17e3178b47273be6ff"
+        },
+        {
+            "date": 1693804585880,
+            "name": "/media/mohammad/CA20957920956D67/web development/Project/univercity-manegment/university-management-core-service-starter/logs/winston/errors/phu-2023-04-09-11-error.log",
+            "hash": "aaed77be2fb1dbb516e1b22f20c5df01b8e35ae7a3047fedb8f64cfebdff6269"
         }
     ],
     "hashType": "sha256"
