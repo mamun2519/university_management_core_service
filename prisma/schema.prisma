@@ -159,17 +159,19 @@ model CourseFaculty {
 
 // change start and enddate type 
 model SemesterRegistration {
-  id                 String                      @id @default(uuid())
-  startDate          DateTime
-  endDate            DateTime
-  status             SemesterRegistrationStatus? @default(UPCOMING)
-  minCredit          Int
-  maxCredit          Int
-  academicSemesterId String
-  academicSemester   AcademicSemester            @relation(fields: [academicSemesterId], references: [id])
-  createdAt          DateTime                    @default(now())
-  updatedAt          DateTime                    @updatedAt
-  offerdCourses      OfferdCourse[]
+  id                        String                      @id @default(uuid())
+  startDate                 DateTime
+  endDate                   DateTime
+  status                    SemesterRegistrationStatus? @default(UPCOMING)
+  minCredit                 Int
+  maxCredit                 Int
+  academicSemesterId        String
+  academicSemester          AcademicSemester            @relation(fields: [academicSemesterId], references: [id])
+  createdAt                 DateTime                    @default(now())
+  updatedAt                 DateTime                    @updatedAt
+  offerdCourses             OfferdCourse[]
+  OfferdCourseSection       OfferdCourseSection[]
+  OfferdCourseClassSchedule OfferdCourseClassSchedule[]
 
   @@map("semester_registration")
 }
@@ -199,23 +201,27 @@ model OfferdCourseSection {
   offeredCourseId           String
   offeredCourse             OfferdCourse                @relation(fields: [offeredCourseId], references: [id])
   offerdCourseClassSchedule OfferdCourseClassSchedule[]
+  semesterRegistrationId    String
+  semesterRegistration      SemesterRegistration        @relation(fields: [semesterRegistrationId], references: [id])
 
   @@map("offered-course-section")
 }
 
 model OfferdCourseClassSchedule {
-  id                     String              @id @default(uuid())
+  id                     String               @id @default(uuid())
   startTime              String
   endTime                String
-  dayOfweek              WeekDays            @default(SATURDAY)
-  createdAt              DateTime            @default(now())
-  updatedAt              DateTime            @updatedAt
+  dayOfweek              WeekDays             @default(SATURDAY)
+  createdAt              DateTime             @default(now())
+  updatedAt              DateTime             @updatedAt
   offeredCourseSectionId String
-  offerCourseSection     OfferdCourseSection @relation(fields: [offeredCourseSectionId], references: [id])
+  offerCourseSection     OfferdCourseSection  @relation(fields: [offeredCourseSectionId], references: [id])
   roomId                 String
-  room                   Room                @relation(fields: [roomId], references: [id])
+  room                   Room                 @relation(fields: [roomId], references: [id])
   facultyId              String
-  faculty                Faculty             @relation(fields: [facultyId], references: [id])
+  faculty                Faculty              @relation(fields: [facultyId], references: [id])
+  semesterRegistrationId String
+  semesterRegistration   SemesterRegistration @relation(fields: [semesterRegistrationId], references: [id])
 
   @@map("offer-course-class-schedule")
 }
