@@ -5,3 +5,8 @@ export type IRegistrationFilterRequest = {
   minCredit?: string | undefined;
   maxCredit?: string | undefined;
 };
+
+export type IEnrollCoursePayload = {
+  offeredCourseId: string;
+  offeredCourseSectionId: string;
+};
