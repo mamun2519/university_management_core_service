@@ -1,8 +1,11 @@
 import {
+  Course,
+  OfferdCourse,
   Prisma,
   SemesterRegistration,
   SemesterRegistrationStatus,
   StudentSemesterRegistration,
+  StudentSemesterRegistrationCourse,
 } from '@prisma/client';
 import httpStatus from 'http-status';
 import ApiError from '../../../errors/ApiError';
@@ -10,7 +13,9 @@ import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
 import prisma from '../../../prisma/prisma';
-import { StudentSemesterRegistrationCourse } from '../studentSemesterRegistrationCourse/studentSemesterRegistrationCourse';
+import { asyncForeach } from '../../../shared/utils/asyncForEach';
+import { studentEnrollCourseMarkService } from '../studentEnrolledCourseMark/studentEnrolledCourseMark.service';
+import { StudentSemesterPaymentService } from '../studentSemesterPayment/studentSemesterPayment.service';
 import { registrationSearchableFields } from './semesteRegistration.constent';
 import {
   IEnrollCoursePayload,
@@ -332,6 +337,140 @@ const getMyRegistration = async (authUserId: string) => {
     });
   return { semesterRegistration, studentSemesterRegistration };
 };
+
+const startNewSemester = async (id: string): Promise<{ message: string }> => {
+  const semesterRegistration = await prisma.semesterRegistration.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      academicSemester: true,
+    },
+  });
+  if (!semesterRegistration) {
+    throw new ApiError(
+      httpStatus.BAD_REQUEST,
+      'semester registration not found'
+    );
+  }
+
+  if (semesterRegistration.status !== SemesterRegistrationStatus.ENDED) {
+    throw new ApiError(
+      httpStatus.BAD_REQUEST,
+      'Semester Registration is not ended yet!'
+    );
+  }
+  if (!semesterRegistration.academicSemester.isCurrent) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'semester is already started!');
+  }
+  await prisma.$transaction(async transactionClient => {
+    await transactionClient.academicSemester.updateMany({
+      where: {
+        isCurrent: true,
+      },
+      data: {
+        isCurrent: false,
+      },
+    });
+
+    await transactionClient.academicSemester.update({
+      where: {
+        id: semesterRegistration.academicSemester.id,
+      },
+      data: {
+        isCurrent: true,
+      },
+    });
+    const studentSemesterRegistration =
+      await transactionClient.studentSemesterRegistration.findMany({
+        where: {
+          semesterRegistration: {
+            id,
+          },
+          isConfirmed: true,
+        },
+      });
+
+    await asyncForeach(
+      studentSemesterRegistration,
+      async (studentSemReg: StudentSemesterRegistration) => {
+        if (studentSemReg.totalCreditsToken) {
+          const totalSemesterPaymentAmount =
+            studentSemReg.totalCreditsToken * 5000;
+          await StudentSemesterPaymentService.createSemesterPayment(
+            transactionClient,
+            {
+              studentId: studentSemReg.studentId,
+              academicSemesterId: semesterRegistration.academicSemesterId,
+              totalPaymentAmount: totalSemesterPaymentAmount,
+            }
+          );
+        }
+
+        const studentSemesterRegistrationCourse =
+          await transactionClient.studentSemesterRegistrationCourse.findMany({
+            where: {
+              semesterRegistration: { id },
+              student: { id: studentSemReg.studentId },
+            },
+            include: {
+              offeredCourse: {
+                include: {
+                  course: true,
+                },
+              },
+            },
+          });
+
+        await asyncForeach(
+          studentSemesterRegistrationCourse,
+          async (
+            item: StudentSemesterRegistrationCourse & {
+              offeredCourse: OfferdCourse & {
+                course: Course;
+              };
+            }
+          ) => {
+            const isExistEnrolledData =
+              await transactionClient.studentEnrollCourse.findFirst({
+                where: {
+                  student: { id: item.studentId },
+                  course: { id: item.offeredCourse.courseId },
+                  academicSemester: {
+                    id: semesterRegistration.academicSemesterId,
+                  },
+                },
+              });
+
+            if (!isExistEnrolledData) {
+              const enrolledCourseData = {
+                studentId: item.studentId,
+                courseId: item.offeredCourse.courseId,
+                academicSemesterId: semesterRegistration.academicSemesterId,
+              };
+              const studentEnrollCourseData =
+                await transactionClient.studentEnrollCourse.create({
+                  data: enrolledCourseData,
+                });
+              await studentEnrollCourseMarkService.createStudentEnrolledDefaultMark(
+                transactionClient,
+                {
+                  studentId: item.studentId,
+                  studentEnrolledCourseId: studentEnrollCourseData.id,
+                  academicSemesterId: semesterRegistration.academicSemesterId,
+                }
+              );
+            }
+          }
+        );
+      }
+    );
+  });
+
+  return {
+    message: 'semester stared successfully!',
+  };
+};
 export const SemesterRegistrationService = {
   insertIntoDB,
   getAllFromDB,
@@ -343,4 +482,5 @@ export const SemesterRegistrationService = {
   withdrewFromCourse,
   confirmMyRegistration,
   getMyRegistration,
+  startNewSemester,
 };
