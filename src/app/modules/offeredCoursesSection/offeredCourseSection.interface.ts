@@ -1,3 +1,5 @@
+import { WeekDays } from '@prisma/client';
+
 export const offeredCourseSectionFilterableFields: string[] = [
   'searchTerm',
   'id',
@@ -16,6 +18,21 @@ export const offeredCourseSectionRelationalFieldsMapper: {
 } = {
   offeredCourseId: 'offeredCourse',
   semesterRegistrationId: 'semesterRegistration',
+};
+
+export type IClassSchedule = {
+  startTime: string;
+  endTime: string;
+  dayOfWeek: WeekDays;
+  roomId: string;
+  facultyId: string;
+};
+
+export type IOfferedCourseSectionCreate = {
+  title: string;
+  maxCapacity: number;
+  offeredCourseId: string;
+  classSchedules: IClassSchedule[];
 };
 
 export const daysInWeek = [
