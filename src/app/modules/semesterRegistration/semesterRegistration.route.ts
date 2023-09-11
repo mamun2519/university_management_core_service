@@ -6,6 +6,11 @@ import { SemesterRegistrationController } from './semesterRegistration.controlle
 import { SemesterRegistrationValidation } from './semesterRegistration.validation';
 const router = express.Router();
 router.get(
+  '/get-my-semsester-courses',
+  auth(ENUM_USER_ROLE.STUDENT),
+  SemesterRegistrationController.getMySemesterRegCourses
+);
+router.get(
   '/get-my-registration',
   auth(ENUM_USER_ROLE.STUDENT),
   SemesterRegistrationController.getMyRegistration
